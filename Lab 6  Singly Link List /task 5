@@ -1,0 +1,177 @@
+
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Book{
+    private:
+    class node{
+      public:
+        string name;
+        int priority;
+        node * next;
+        node(string n,int p){
+            name=n;
+            priority=p;
+            next=NULL;
+        }
+    };
+    node * front;
+    public:
+    string bookname;
+    book(string name){
+        bookname=name;
+        front=Null;
+    }
+    void addstudent(string name,int priority){
+        node * newnode = new node(name,priority);
+        if(front==NULL || priority<front->priority){
+            newnode->next=front;
+            front = newnode;
+            return;
+        }
+        node *temp=front;
+         while (temp->next != NULL &&
+               temp->next->priority <= priority)
+        {
+            temp = temp->next;
+        }
+
+        newNode->next = temp->next;
+        temp->next = newNode;
+
+        cout << name << " added to " << bookName << endl;
+    }
+     void removeStudent(string name)
+    {
+        if (front == NULL)
+        {
+            cout << "Reservation list is empty\n";
+            return;
+        }
+
+        if (front->name == name)
+        {
+            Node* del = front;
+            front = front->next;
+            delete del;
+
+            cout << name << " reservation cancelled\n";
+            return;
+        }
+
+        Node* temp = front;
+
+        while (temp->next != NULL &&
+               temp->next->name != name)
+        {
+            temp = temp->next;
+        }
+
+        if (temp->next == NULL)
+        {
+            cout << "Student not found\n";
+            return;
+        }
+
+        Node* del = temp->next;
+        temp->next = del->next;
+        delete del;
+
+        cout << name << " reservation cancelled\n";
+    }
+    void updatePriority(string name, int newPriority)
+    {
+        if (front == NULL)
+        {
+            cout << "Reservation list is empty\n";
+            return;
+        }
+
+        Node* temp = front;
+
+        while (temp != NULL && temp->name != name)
+        {
+            temp = temp->next;
+        }
+
+        if (temp == NULL)
+        {
+            cout << "Student not found\n";
+            return;
+        }
+void display()
+    {
+        cout << "\nBook: " << bookName << endl;
+
+        if (front == NULL)
+        {
+            cout << "No reservations\n";
+            return;
+        }
+
+        Node* temp = front;
+
+        while (temp != NULL)
+        {
+            cout << temp->name
+                 << " (Priority " << temp->priority << ")";
+
+            if (temp->next != NULL)
+                cout << " -> ";
+
+            temp = temp->next;
+        }
+
+        cout << " -> NULL\n";
+    }
+
+    // Count students
+    int countStudents()
+    {
+        int count = 0;
+        Node* temp = front;
+
+        while (temp != NULL)
+        {
+            count++;
+            temp = temp->next;
+        }
+
+        return count;
+    }
+    void bookReturned()
+    {
+        if (front == NULL)
+        {
+            cout << "No student waiting\n";
+            return;
+        }
+
+        Node* del = front;
+
+        cout << del->name
+             << " received " << bookName << endl;
+
+        front = front->next;
+
+        delete del;
+    }
+    ~Book()
+    {
+        while (front != NULL)
+        {
+            Node* del = front;
+            front = front->next;
+            delete del;
+        }
+    }
+};
+
+
+
+
+int main() {
+   
+    return 0;
+}
